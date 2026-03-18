@@ -1,6 +1,7 @@
 import React from "react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { apiUrl } from "../config";
 import { getLocalItem, getOrCreateLocalItem, setSessionItem } from "../utils/storage";
 
 const QUIZ_SECONDS = 10 * 60;
@@ -28,7 +29,7 @@ export default function QuizPage() {
     }
 
     let active = true;
-    fetch("/questions")
+    fetch(apiUrl("/questions"))
       .then((res) => {
         if (!res.ok) throw new Error("Unable to load quiz questions.");
         return res.json();
@@ -57,7 +58,7 @@ export default function QuizPage() {
     setError("");
 
     try {
-      const res = await fetch("/submit", {
+      const res = await fetch(apiUrl("/submit"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: username, answers, attemptId }),

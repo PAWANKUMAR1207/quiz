@@ -1,12 +1,26 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs");
+const cors = require("cors");
 const quizRoutes = require("./routes/quizRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 const clientDistPath = path.join(__dirname, "..", "client", "dist");
+const frontendOrigin = (process.env.FRONTEND_ORIGIN || "").trim();
 
+app.use(
+  cors({
+    origin(origin, callback) {
+      if (!origin || !frontendOrigin || origin === frontendOrigin) {
+        callback(null, true);
+        return;
+      }
+
+      callback(new Error("Not allowed by CORS"));
+    },
+  })
+);
 app.use(express.json());
 app.use("/", quizRoutes);
 

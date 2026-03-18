@@ -1,6 +1,7 @@
 import React from "react";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { apiUrl } from "../config";
 import { getLocalItem, getSessionItem } from "../utils/storage";
 
 export default function ResultPage() {
@@ -23,7 +24,7 @@ export default function ResultPage() {
       return;
     }
 
-    fetch("/leaderboard")
+    fetch(apiUrl("/leaderboard"))
       .then((res) => {
         if (!res.ok) throw new Error("Unable to load leaderboard.");
         return res.json();
