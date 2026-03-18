@@ -1,0 +1,12 @@
+{
+  "name": "devops-quiz-backend",
+  "version": "1.0.0",
+  "description": "Backend for DevOps Quiz App",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
