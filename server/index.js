@@ -7,7 +7,9 @@ const quizRoutes = require("./routes/quizRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const clientDistPath = path.join(__dirname, "..", "client", "dist");
-const frontendOrigin = (process.env.FRONTEND_ORIGIN || "").trim();
+const frontendOrigin = (
+  process.env.FRONTEND_ORIGIN || "https://quiz-2-9px8.onrender.com"
+).trim();
 
 app.use(
   cors({
